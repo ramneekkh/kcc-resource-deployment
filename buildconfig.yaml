@@ -4,6 +4,6 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_REGION=asia-southeast1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=automation-cluster'
-#options:
-#  workerPool:
- #   'projects/kcc-clean/locations/asia-southeast1/workerPools/PRIVATE_POOL_NAME'
+options:
+  workerPool:
+    'projects/kcc-clean/locations/asia-southeast1/workerPools/PRIVATE_POOL_NAME'
