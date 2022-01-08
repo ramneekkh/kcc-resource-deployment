@@ -43,4 +43,4 @@ jobs:
     # Build and push image to Google Container Registry
     - name: Build
       run: |-
-        gcloud builds submit --config=../../cloudbuild.yaml
+        ls -lart
