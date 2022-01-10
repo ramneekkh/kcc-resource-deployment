@@ -42,3 +42,12 @@ jobs:
     - name: Build
       run: |-
         gcloud builds submit --config=./buildconfig.yaml
+
+    - name: take_input
+      inputs:
+        logLevel:
+          description: 'Log level'     
+          required: true
+          default: 'warning'
+        tags:
+          description: 'Test scenario tags' 
