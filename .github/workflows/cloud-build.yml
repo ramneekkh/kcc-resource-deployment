@@ -24,8 +24,10 @@ env:
   SERVICE_NAME: helloworld-nodejs
 
 jobs:
-  setup-build-deploy:
-    name: Setup, Build, and Deploy
+  build:
+    name: Setup and Build Helm Artifact
+    environment: 
+      name: dev
     runs-on: ubuntu-latest
 
     steps:
@@ -42,12 +44,26 @@ jobs:
     - name: Build
       run: |-
         gcloud builds submit --config=./buildconfig.yaml
+ 
 
-    - name: take_input
-      inputs:
-        logLevel:
-          description: 'Log level'     
-          required: true
-          default: 'warning'
-        tags:
-          description: 'Test scenario tags' 
+  deploy:
+    needs: build
+    name: Deploy
+    environment: 
+      name: staging
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Setup gcloud CLI
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.RUN_SA_KEY }}'
+
+    # Build and push image to Google Container Registry
+    - name: Build
+      run: |-
+        gcloud builds submit --config=./buildconfig.yaml
