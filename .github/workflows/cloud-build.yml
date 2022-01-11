@@ -43,7 +43,7 @@ jobs:
     # Build and push image to Google Container Registry
     - name: Build
       run: |-
-        gcloud builds submit --config=./buildconfig.yaml
+        gcloud builds submit --config=./buildconfig-build.yaml
  
 
   deploy:
