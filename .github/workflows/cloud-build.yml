@@ -22,7 +22,11 @@ on:
 env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
   SERVICE_NAME: KCC build and deploy workflow
-
+# Add "id-token" with the intended permissions.
+permissions:
+  contents: 'read'
+  id-token: 'write'
+  
 jobs:
   build:
     name: Setup and Build Helm Artifact
