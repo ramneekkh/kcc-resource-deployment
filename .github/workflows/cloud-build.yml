@@ -21,7 +21,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
-  SERVICE_NAME: helloworld-nodejs
+  SERVICE_NAME: KCC build and deploy workflow
 
 jobs:
   build:
@@ -43,7 +43,6 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0'
       with:
-         token_format: 'access_token'
          workload_identity_provider: 'projects/kcc-clean/locations/global/workloadIdentityPools/example-pool/providers/example-gh-provider'
          service_account: 'codebuild-gitflow@kcc-clean.iam.gserviceaccount.com'
 
